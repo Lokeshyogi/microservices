@@ -1,9 +1,11 @@
-package com.example.service;
+package com.product.service;
 
-import com.example.model.User;
-import com.example.repository.UserRepository;
+import com.product.model.UserInfo;
+import com.product.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -15,16 +17,19 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User registerUser(User user) {
-        return userRepository.save(user);
+    public UserInfo registerUser(UserInfo userInfo) {
+        return userRepository.save(userInfo);
     }
 
-    public User findByUsername(String username) {
+    public UserInfo findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
-    public User findByEmail(String email) {
+    public UserInfo findByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+    public Optional<UserInfo> findById(Long id) {
+        return userRepository.findById(id);
     }
 }
 
