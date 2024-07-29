@@ -23,8 +23,6 @@ public class OrderServiceController {
 
     @PostMapping
     public Order createOrder(@RequestBody Order order) {
-        UserDto user = userServiceClient.getUserById(order.getUserId());
-        System.out.println(user.toString());
         return orderService.createOrder(order);
     }
 
