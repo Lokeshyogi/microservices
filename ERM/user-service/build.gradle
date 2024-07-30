@@ -1,43 +1,40 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.3.2'
-    id 'io.spring.dependency-management' version '1.1.6'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
-group = 'com.erm'
-version = '0.0.1-SNAPSHOT'
+group 'com.erm'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = '11'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-//    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'io.vertx:vertx-web:4.4.3'
+    implementation 'io.vertx:vertx-core:4.4.3'
+    implementation 'io.vertx:vertx-jdbc-client:4.4.3'
     implementation 'mysql:mysql-connector-java:8.0.33'
-//    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    compileOnly 'org.projectlombok:lombok:1.18.34'
-
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-//    testImplementation 'org.springframework.security:spring-security-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    testImplementation platform('org.junit:junit-bom:5.10.3')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+    implementation 'org.hibernate:hibernate-core:5.6.11.Final'
+    implementation 'com.zaxxer:HikariCP:4.0.3'
+    implementation 'javax.persistence:javax.persistence-api:2.2'
 }
 
-test {
-    useJUnitPlatform()
+application {
+    mainClass = 'com.erm.service.MainVerticle'
 }
-
-ext {
-    set('springCloudVersion', "2023.0.3")
-}
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+shadowJar {
+    archiveClassifier.set('fat')
+    mergeServiceFiles()
+    manifest {
+        attributes 'Main-Class': 'com.erm.service.MainVerticle' // Replace with your main class
     }
 }
+tasks.named('jar').configure {
+    enabled = false
+}
+
