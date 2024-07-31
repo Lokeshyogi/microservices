@@ -1,4 +1,4 @@
-package com.user.model;
+package com.erm.authentication.model;
 
 import jakarta.persistence.*;
 import lombok.NonNull;
@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 
 @Entity
-public class UserInfo {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

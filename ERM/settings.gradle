@@ -4,4 +4,5 @@ include 'order-service'
 include 'payment-service'
 include 'eureka-server'
 include 'api-gateway'
+include 'authentication-service'
 
