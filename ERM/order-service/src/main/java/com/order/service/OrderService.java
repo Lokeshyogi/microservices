@@ -14,7 +14,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class OrderService {
+public class OrderService implements IOrderService{
     private final OrderServiceRepository orderRepository;
     private final WebClientConfig webClientConfig;
     private final UserServiceClient userServiceClient;

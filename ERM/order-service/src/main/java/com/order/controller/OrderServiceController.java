@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/orders")
-public class OrderServiceController {
+public class OrderServiceController implements IOrderServiceController {
 
     private final OrderService orderService;
     private final UserServiceClient userServiceClient;

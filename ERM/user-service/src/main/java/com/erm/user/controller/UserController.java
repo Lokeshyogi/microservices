@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
-public class UserController {
+public class UserController implements IUserController {
     private  final UserServiceImpl userService;
 
     @Autowired
