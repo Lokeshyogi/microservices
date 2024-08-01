@@ -26,7 +26,7 @@ public class Order {
     @Column(nullable = true)
     private String status;
 
-    @OneToMany(cascade = CascadeType.ALL)
+//    @OneToMany(cascade = CascadeType.ALL)
     private List<OrderItem> items;
 
 
