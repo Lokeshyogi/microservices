@@ -1,11 +1,20 @@
 package com.erm.authentication.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotNull;
+
 public class UserDTO {
 
+        //value: to map any string to variable
+        @JsonProperty(value = "userName",required = true)
+        @NotNull(message = "Username is required")
         private String username;
+        @NotNull(message = "password is required")
         private String password;
+        @NotNull(message = "email is required")
         private String email;
+        @NotNull(message = "firstName is required")
         private String firstName;
         private String lastName;
 

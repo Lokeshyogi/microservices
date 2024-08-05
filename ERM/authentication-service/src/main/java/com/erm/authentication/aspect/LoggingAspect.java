@@ -1,5 +1,6 @@
 package com.erm.authentication.aspect;
 
+import com.erm.authentication.dto.UserDTO;
 import com.erm.authentication.model.AuthenticationRequest;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -14,6 +15,9 @@ public class LoggingAspect {
 
     @Pointcut("execution(* com.erm.authentication.controller.AuthController.createAuthenticationToken(..))")
     private void forTokenCreationMethod() {
+    }
+    @Pointcut("execution(* com.erm.authentication.controller.AuthController.registerUser(..))")
+    private void forSignUpMethod() {
     }
 
     @Before("forTokenCreationMethod()")
@@ -36,6 +40,13 @@ public class LoggingAspect {
         logger.info(String.format("The exception is: %s", theExcep));
     }
 
+
+    @Before("forSignUpMethod()")
+    public void beforeSignUpMethod(JoinPoint theJoinPoint) {
+        UserDTO arg = (UserDTO) theJoinPoint.getArgs()[0];
+        System.out.println(arg.getUsername());
+        logger.info("\n=====>>> Registration process started =====<<<");
+    }
 }
 
 

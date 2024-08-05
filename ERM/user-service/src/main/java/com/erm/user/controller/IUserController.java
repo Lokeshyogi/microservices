@@ -5,8 +5,8 @@ import com.erm.user.model.User;
 import org.springframework.http.ResponseEntity;
 
 public interface IUserController {
-    public User getUserByName(String name);
-    public User getUserByEmail(String email);
-    public User getUserProfile(Long id);
+    public ResponseEntity<User> getUserByName(String name);
+    public ResponseEntity<User> getUserByEmail(String email);
+    public ResponseEntity<User> getUserProfile(Long id);
     public ResponseEntity<User> updateUser(Long id, UserDTO userDTO);
 }

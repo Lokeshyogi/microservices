@@ -9,6 +9,7 @@ import com.erm.authentication.model.User;
 import com.erm.authentication.repository.UserRepository;
 import com.erm.authentication.service.CustomUserDetailsService;
 import com.erm.authentication.service.JwtUtil;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,7 +63,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<User> registerUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<User> registerUser(@Valid @RequestBody UserDTO userDTO) {
         if (userRepository.findByUsername(userDTO.getUsername()) != null) {
             logger.info("username not available");
             throw new UserAuthenticationException("username not available");
@@ -78,7 +79,7 @@ public class AuthController {
         catch (Exception e)
         {
             logger.info("error while register: {}",e.getMessage());
-            throw new UserAuthenticationException(e.getMessage(),e.getCause());
+            throw new UserAuthenticationException(e.getLocalizedMessage(),e.getCause());
         }
         return new ResponseEntity<>(savedUser, HttpStatus.OK);
     }
