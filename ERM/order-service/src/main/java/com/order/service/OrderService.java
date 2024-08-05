@@ -11,10 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
-public class OrderService implements IOrderService{
+public class OrderService implements IOrderService {
     private final OrderServiceRepository orderRepository;
     private final WebClientConfig webClientConfig;
     private final UserServiceClient userServiceClient;
@@ -32,9 +31,10 @@ public class OrderService implements IOrderService{
         Optional<UserDto> user = Optional.ofNullable(userServiceClient.getUserById(order.getUserId()));
         user.orElseThrow(RuntimeException::new);
         List<OrderItem> updated_order_item = order.getItems().stream()
-                .map(item->{
+                .map(item -> {
                     item.setOrder_id(order.getId());
-                    return item;})
+                    return item;
+                })
                 .toList();
         order.setItems(updated_order_item);
         Order order1 = orderRepository.save(order);
@@ -56,5 +56,8 @@ public class OrderService implements IOrderService{
 
     public List<Order> getOrdersByUserId(Long userId) {
         return orderRepository.findByUserId(userId);
+
+
     }
 }
+

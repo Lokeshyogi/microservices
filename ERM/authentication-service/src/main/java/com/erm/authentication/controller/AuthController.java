@@ -1,5 +1,6 @@
 package com.erm.authentication.controller;
 
+import com.erm.authentication.Excepetion.UserAuthenticationException;
 import com.erm.authentication.model.AuthenticationRequest;
 import com.erm.authentication.model.AuthenticationResponse;
 import com.erm.authentication.model.User;
@@ -38,7 +39,7 @@ public class AuthController {
                 new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
             );
         } catch (Exception e) {
-            throw new Exception("Incorrect username or password", e);
+            throw new UserAuthenticationException("Incorrect username or password", e.getCause());
         }
 
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
@@ -65,4 +66,5 @@ public class AuthController {
     public User getUserByName(@RequestParam(value = "name") String userName) {
         return userRepository.findByUsername(userName);
     }
+
 }
