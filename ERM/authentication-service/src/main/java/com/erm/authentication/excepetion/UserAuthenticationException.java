@@ -1,4 +1,4 @@
-package com.erm.authentication.Excepetion;
+package com.erm.authentication.excepetion;
 
 public class UserAuthenticationException extends RuntimeException{
     public UserAuthenticationException() {

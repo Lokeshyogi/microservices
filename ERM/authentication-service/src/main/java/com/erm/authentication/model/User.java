@@ -2,6 +2,7 @@ package com.erm.authentication.model;
 
 import jakarta.persistence.*;
 import lombok.NonNull;
+
 import java.time.LocalDateTime;
 
 
@@ -11,15 +12,36 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NonNull
     @Column(nullable = false, unique = true)
     private String username;
-    @NonNull
+
     @Column(nullable = false)
     private String password;
-    @NonNull
+
     @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false)
+    private String firstName;
+
+    @Column(nullable = false)
+    private String lastName;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
@@ -31,27 +53,27 @@ public class User {
         this.id = id;
     }
 
-    public @NonNull String getUsername() {
+    public  String getUsername() {
         return username;
     }
 
-    public void setUsername(@NonNull String username) {
+    public void setUsername( String username) {
         this.username = username;
     }
 
-    public @NonNull String getPassword() {
+    public  String getPassword() {
         return password;
     }
 
-    public void setPassword(@NonNull String password) {
+    public void setPassword( String password) {
         this.password = password;
     }
 
-    public @NonNull String getEmail() {
+    public  String getEmail() {
         return email;
     }
 
-    public void setEmail(@NonNull String email) {
+    public void setEmail( String email) {
         this.email = email;
     }
 

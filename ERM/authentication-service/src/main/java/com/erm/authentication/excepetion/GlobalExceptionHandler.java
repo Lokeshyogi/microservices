@@ -1,4 +1,4 @@
-package com.erm.authentication.Excepetion;
+package com.erm.authentication.excepetion;
 
 
 import org.springframework.http.HttpStatus;

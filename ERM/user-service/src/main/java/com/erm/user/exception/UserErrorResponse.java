@@ -1,16 +1,16 @@
-package com.erm.authentication.Excepetion;
+package com.erm.user.exception;
 
-public class AuthErrorResponse {
+public class UserErrorResponse {
 
     private int status;
     private String message;
     private long timeStamp;
 
-    public AuthErrorResponse() {
+    public UserErrorResponse() {
 
     }
 
-    public AuthErrorResponse(int status, String message, long timeStamp) {
+    public UserErrorResponse(int status, String message, long timeStamp) {
         this.status = status;
         this.message = message;
         this.timeStamp = timeStamp;
