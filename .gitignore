@@ -1,3 +1,12 @@
 /.gradle/
 /api-gateway/build/
 /build/
+/api-gateway/build.gradle
+/user-service/build/
+/product-service/build/
+/payment-service/build/
+/order-service/build/
+/eureka-server/build/
+/.idea/
+/authentication-service/build/
+/inventory-service/build/
